@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Netflix Clone | Christian</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Helvetica', sans-serif; background: #000; color: white; }
+    
+    .navbar {
+      background: rgba(0,0,0,0.9);
+      padding: 20px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .logo {
+      color: #e50914;
+      font-size: 32px;
+      font-weight: bold;
+    }
+    
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 20px;
+      font-weight: bold;
+    }
+    
+    nav a:hover { color: #e50914; }
+    
+    .hero {
+      height: 70vh;
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=1200') center/cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 80px;
+      margin-top: 80px;
+    }
+    
+    .hero h1 {
+      font-size: 60px;
+      margin-bottom: 20px;
+    }
+    
+    .hero p {
+      font-size: 24px;
+      max-width: 600px;
+      margin-bottom: 30px;
+    }
+    
+    .buttons {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .play, .info {
+      padding: 12px 35px;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+    .play {
+      background: white;
+      color: black;
+    }
+    
+    .info {
+      background: rgba(109,109,109,0.7);
+      color: white;
+    }
+    
+    .row {
+      padding: 60px 50px;
+    }
+    
+    .row h2 {
+      margin-bottom: 25px;
+      font-size: 26px;
+    }
+    
+    .movie-list {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      padding: 10px 0;
+    }
+    
+    .movie {
+      min-width: 200px;
+      background: #1a1a1a;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: 0.3s;
+    }
+    
+    .movie:hover {
+      transform: scale(1.08);
+    }
+    
+    .poster {
+      height: 120px;
+      background: #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+    }
+    
+    .movie p {
+      padding: 12px;
+      font-weight: bold;
+      font-size: 14px;
+      text-align: center;
+    }
+    
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 40px; }
+      .hero p { font-size: 18px; }
+      .hero { padding: 0 30px; }
+      .navbar { padding: 15px 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="logo">NETFLIX</div>
+    <nav>
+      <a href="#">Inicio</a>
+      <a href="#">Series</a>
+      <a href="#">Películas</a>
+    </nav>
+  </div>
+
+  <div class="hero">
+    <h1>Stranger Things</h1>
+    <p>Una serie de misterio y ciencia ficción en los 80</p>
+    <div class="buttons">
+      <button class="play">Reproducir</button>
+      <button class="info">Más info</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <h2>Populares en Netflix</h2>
+    <div class="movie-list">
+      <div class="movie">
+        <div class="poster">Stranger Things</div>
+        <p>Stranger Things</p>
+      </div>
+      <div class="movie">
+        <div class="poster">The Crown</div>
+        <p>The Crown</p>
+      </div>
+      <div class="movie">
+        <div class="poster">La Casa de Papel</div>
+        <p>La Casa de Papel</p>
+      </div>
+      <div class="movie">
+        <div class="poster">The Witcher</div>
+        <p>The Witcher</p>
+      </div>
+      <div class="movie">
+        <div class="poster">Breaking Bad</div>
+        <p>Breaking Bad</p>
+      </div>
+    </div>
+  </div>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+</body>
+</html>
